@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batik Nusantara - Toko Online</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2 class="logo">🧵 Batik Nusantara</h2>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li><a href="#" onclick="showSection('upload')">Upload Produk</a></li>
+                <li><a href="#" onclick="showSection('products')">Produk</a></li>
+                <li><a href="#" onclick="toggleDarkMode()">🌙 Dark Mode</a></li>
+                <li id="auth-links">
+                    <a href="#" onclick="showLogin()">Login</a> | 
+                    <a href="#" onclick="showRegister()">Register</a>
+                </li>
+                <li id="logout-link" style="display:none;"><a href="#" onclick="logout()">Logout</a></li>
+                <li><span id="user-welcome" style="display:none;"></span></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">&times;</span>
+            <h3>Login</h3>
+            <input type="email" id="login-email" placeholder="Email">
+            <input type="password" id="login-pass" placeholder="Password">
+            <button onclick="login()">Masuk</button>
+        </div>
+    </div>
+
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('register-modal')">&times;</span>
+            <h3>Register</h3>
+            <input type="text" id="reg-name" placeholder="Nama">
+            <input type="email" id="reg-email" placeholder="Email">
+            <input type="password" id="reg-pass" placeholder="Password">
+            <button onclick="register()">Daftar</button>
+        </div>
+    </div>
+
+    <main>
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Batik Nusantara Digital</h1>
+                <p>Toko online batik autentik dengan marketing digital modern. Upload produk, jual cepat!</p>
+                <button class="cta" onclick="showSection('products')">Lihat Koleksi</button>
+            </div>
+        </section>
+
+        <section id="upload" class="section">
+            <h2>Upload Foto Produk Batik</h2>
+            <form id="upload-form">
+                <input type="text" id="product-name" placeholder="Nama Produk (ex: Batik Parang)">
+                <input type="number" id="product-price" placeholder="Harga (Rp)">
+                <textarea id="product-desc" placeholder="Deskripsi"></textarea>
+                <input type="file" id="product-image" accept="image/*">
+                <div id="image-preview"></div>
+                <button type="submit">Upload Produk</button>
+            </form>
+        </section>
+
+        <section id="products" class="section">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Cari batik..." onkeyup="searchProducts()">
+            </div>
+            <div id="products-grid" class="products-grid"></div>
+            <div id="cart" class="cart">
+                <h3>Keranjang (<span id="cart-count">0</span>)</h3>
+                <div id="cart-items"></div>
+                <button onclick="checkout()">Checkout</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
